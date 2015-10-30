@@ -25,6 +25,7 @@ function matrix(a) {
 }
 
 // versione ricorsiva
+// NON FUNZIONANTE
 function recmatrix(a) {
     return recmatrixt(a, Math.sqrt(a.length));
 }
