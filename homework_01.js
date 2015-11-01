@@ -483,11 +483,22 @@ function sort(a) {
 
 // versione ricorsiva
 function recsort(a) {
-    if (a.length == 1) {
-        return [a[0]];
+    var even = [];
+    var odd = [];
+    return recsortt(a, even, odd);
+}
+
+function recsortt(a, even, odd) {
+    if (a.length == 0) {
+        return odd.concat(even);
     }
-    
-    return (a[0] % 2 != 0) ? [a[0]].concat(recsort(a.slice(1))) : recsort(a.slice(1));//.concat([a[0]]);
+
+    if ((a[0] % 2) == 0) 
+        even.push(a[0]);
+    else
+        odd.push(a[0]);
+
+    return recsortt(a.slice(1), even, odd);
 }
 
 // Per Tiziano
