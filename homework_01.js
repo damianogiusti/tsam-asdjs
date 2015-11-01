@@ -236,7 +236,7 @@ function div(a, b) {
 
     remainder = a;
 
-    return quot + ' resto ' + remainder;
+    return [quot, remainder];
 }
 
 // versione ricorsiva
@@ -246,7 +246,7 @@ function recdiv(a, b) {
 
 function recdivt(a, b, quot) {
     if ((a - b) < 0) 
-        return quot + ' resto ' + a;
+        return [quot, a];
 
     return recdivt(a-b, b, quot+1);
 }
@@ -342,7 +342,7 @@ function recmatrixt(a, length) {
     }
     
     //return [ [a[0]].concat(recmatrixt(a.slice(1), length)) ];
-    return  (a.length % length) == 0 ? [a[0]].concat(recmatrixt(a.slice(1), length)) : [a[0]].concat(recmatrixt(a.slice(1), length));
+    return (a.length % length) == 0 ? [[a[0]].concat(recmatrixt(a.slice(1), length))] : [a[0]].concat(recmatrixt(a.slice(1), length));
 }
 
 // Per Tiziano
@@ -396,3 +396,87 @@ function ex_9_R(a) {
     return recinvert(a);
 }
 
+/***************************************************************************
+
+ Esercizio 10
+
+Dati due interi a, n maggiori di 0, scrivere un algoritmo che crea un lista di n elementi
+
+contenenti a.
+
+Esempio:
+
+replicate(3, 4) => A= {3, 3, 3, 3}
+*/
+
+// O(n)
+function replicate(a, n) {
+    var array = [];
+
+    for (var i=0; i<n; i++) {
+        array.push(a);
+    }
+
+    return array;
+}
+
+// versione ricorsiva
+function recreplicate(a, n) {
+    if (n == 1)
+        return a;
+    
+    return [a].concat(recreplicate(a, n-1));
+}
+
+// Per Tiziano
+function ex_10_I(a, n) {
+    return replicate(a,n);
+}
+function ex_10_R(a, n) {
+    return recreplicate(a, n);
+}
+
+/***************************************************************************
+ 
+ Esercizio 11
+
+Data una lista di interi A, si riordini gli elementi della lista in modo tale che tutti gli elementi
+
+dispari precedano nello stesso ordine tutti gli elementi pari.
+
+Esempio
+
+Input: A = {2, 5, 1, 8}
+
+Output: A = {5, 1, 2, 8}
+*/
+
+function sort(a) {
+    for (var i=0; i<a.length; i++) {
+        if (a[i] % 2 == 0) {
+            var temp = a[i];
+            a.splice(i, 1);
+            a.push(temp);
+        }
+
+    }
+
+    return a;
+}
+
+// versione ricorsiva
+function recsort(a) {
+    if (a.length == 1) {
+        return [a[0]];
+    }
+    
+    return (a[0] % 2 != 0) ? [a[0]].concat(recsort(a.slice(1))) : recsort(a.slice(1));//.concat([a[0]]);
+}
+
+// Per Tiziano
+function ex_11_I(a) {
+    return sort(a);
+}
+function ex_11_R(a) {
+    return recsort(a);
+}
