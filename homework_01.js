@@ -332,17 +332,33 @@ function matrix(a) {
 
 // versione ricorsiva
 // NON FUNZIONANTE
-function recmatrix(a) {
-    return recmatrixt(a, Math.sqrt(a.length));
+
+function matrix(a) {
+    var value = Math.sqrt(a.length);
+    var matrix = [];
+    var index = 0;
+
+    for (var i=0; i<value; i++) {
+        matrix[i] = [];
+        for (var j=0; j<value; j++) {
+            matrix[i][j] = a[index++];
+        }
+    }
+    return matrix; 
 }
 
-function recmatrixt(a, length) {
-    if (a.length == 1) {
-        return a[0];
-    }
-    
-    //return [ [a[0]].concat(recmatrixt(a.slice(1), length)) ];
-    return (a.length % length) == 0 ? [[a[0]].concat(recmatrixt(a.slice(1), length))] : [a[0]].concat(recmatrixt(a.slice(1), length));
+// versione ricorsiva
+function recmatrix1(a){
+	if(a.length == 1) 
+		return a[0];
+	return [a[0]].concat(recmatrix1(a.slice(1)));
+}
+
+function recmatrix(a, length) {
+	a[0] = [recmatrix1(a.slice(0,length))];
+	if(a.length <= length) 
+	   return a[0];
+	return [a[0]].concat(recmatrix(a.slice(length), length));
 }
 
 // Per Tiziano
@@ -350,7 +366,8 @@ function ex_8_I(a) {
     return matrix(a);
 }
 function ex_8_R(a) {
-    return recmatrix(a);
+	var length = Math.sqrt(a.length);
+    return recmatrix(a, length);
 }
 
 /***************************************************************************

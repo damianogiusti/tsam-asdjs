@@ -10,12 +10,11 @@ var array = [1, 2, 3, 4, 5, -1];
 // O(n)
 function sum(a) {
     var somma = 0;
-    for (var i=0; a[i] > 0; i++) {
+    for (var i=0; i < a.length && a[i] > 0; i++) {
         somma += a[i];
     }
     return somma;
 }
-
 
 function recsum(a) {
     // se ho un solo elemento e non è negativo lo ritorno
@@ -30,5 +29,10 @@ function recsum(a) {
     return a[0] + recsum(a.slice(1));
 }
 
-console.log('sum: ' + sum(array));
-console.log('recsum: ' + recsum(array));
+// Per Tiziano
+function ex_1_I(a) {
+    return sum(a);
+}
+function ex_1_R(a) {
+    return recsum(a);
+}
