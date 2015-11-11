@@ -469,16 +469,22 @@ Output: A = {5, 1, 2, 8}
 */
 
 function sort(a) {
+    var even = [];
+    var odd = [];
     for (var i=0; i<a.length; i++) {
         if (a[i] % 2 == 0) {
-            var temp = a[i];
+            /*var temp = a[i];
             a.splice(i, 1);
-            a.push(temp);
+            //a.push(temp);
+            array.push(a[i]);*/
+            even.push(a[i]);
         }
-
+        else {
+            odd.push(a[i]);
+        }
     }
 
-    return a;
+    return odd.concat(even);
 }
 
 // versione ricorsiva
