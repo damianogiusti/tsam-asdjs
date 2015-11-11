@@ -154,7 +154,7 @@ function sumInterval(a, b) {
 // versione ricorsiva
 function sumIntervalRec(a, b) {
     if (a > b) {
-        sumIntervalRec(b, a);
+        return sumIntervalRec(b, a);
     }
 
     if (a == b)
