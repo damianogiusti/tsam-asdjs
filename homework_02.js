@@ -31,7 +31,8 @@ function sum2(a) {
 
 /**
 * costruisce un array appoggiandosi alla funzione every,
-* e come test per uscire dall'every
+* e come test per uscire dall'every utilizza una funzione 
+* che gli passo
 */
 function buildUntil(myarray, check) {
     var tmparray = [];
@@ -50,8 +51,9 @@ function buildUntil(myarray, check) {
 function sum3(a) {
     return buildUntil(a, x => x > 0).reduce((acc, x) => acc + x, 0);
 }
-/*
-function sum(a) {
+
+// funzione sum fatta da cagnone
+function sum_ingnorantissima(a) {
     var trovato = false;
     var array = a.map(
         function(x) {
@@ -67,10 +69,10 @@ function sum(a) {
             return acc + x;
         });
 }
-*/
+
 // Per Tiziano
 function ex_1_F(a) {
-    return sum2(a);
+    return sum3(a);
 }
 
 /********************************************************************* 
