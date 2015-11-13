@@ -117,6 +117,7 @@ function avg(a) {
 function ex_3_F(a) {
     return avg(a);
 }
+
 /***************************************************************************
 
  Esercizio 4
@@ -137,38 +138,21 @@ sumInterval(5, 3) => 12
 // O(n)
 
 function sumInterval(a, b) {
-    var sum = 0;
 
-    if (a > b) {
-        var temp = b;
-        b = a;
-        a = temp;
+    function intervallo(a, b) {
+        var array = [];
+        for (var i=Math.min(a,b); i<=Math.max(a,b); i++) {
+            array.push(i);
+        }
+        return array;
     }
 
-    while (a<=b) {
-        sum += a++;
-    }
-    return sum;
-}
-
-// versione ricorsiva
-function sumIntervalRec(a, b) {
-    if (a > b) {
-        return sumIntervalRec(b, a);
-    }
-
-    if (a == b)
-        return a;
-    
-    return a + sumIntervalRec(a+1, b);
+    return intervallo(a, b).reduce((acc, x) => acc + x);
 }
 
 // Per Tiziano
-function ex_4_I(a, b) {
+function ex_4_F(a, b) {
     return sumInterval(a, b);
-}
-function ex_4_R(a, b) {
-    return sumIntervalRec(a, b);
 }
 
 /***************************************************************************
@@ -187,27 +171,12 @@ mult(2, 3) => 6
 // O(n)
 
 function mult(a, b) {
-    var value = 0;
-    for (var i=0; i<b; i++)
-        value += a;
-
-    return value;
-}
-
-// versione ricorsiva
-function recmult(a, b) {
-    if (b == 1) 
-        return a;
-    
-    return a + recmult(a, b-1);
+    return replicate(a,b).reduce((acc, x) => acc + x);
 }
 
 // Per Tiziano
-function ex_5_I(a, b) {
+function ex_5_F(a, b) {
     return mult(a, b);
-}
-function ex_5_R(a, b) {
-    return recmult(a, b);
 }
 
 /***************************************************************************
@@ -223,9 +192,18 @@ Esempio:
 div(5, 3) => 1 resto 2
 */
 
+function solo_operazioni_di_sottrazione_e_somma(a,b){
+    return [a/b, a%b];
+}
+
+// Per Tiziano
+function ex_6_F(a, b) {
+    return solo_operazioni_di_sottrazione_e_somma(a, b);
+}
+
 // O(n)
 
-function div(a, b) {
+function div1(a, b) {
     var quot = 0;
     var remainder = 0;
 
@@ -237,6 +215,24 @@ function div(a, b) {
     remainder = a;
 
     return [quot, remainder];
+}
+
+function solo_operazioni_di_sottrazione_e_somma(a,b){
+    return [a/b, a%b];
+}
+
+// Per Tiziano
+function ex_6_F(a, b) {
+    return solo_operazioni_di_sottrazione_e_somma(a, b);
+}
+
+function div(a, b) {
+
+    // div(5,3)
+    // [3,3,3,3,3]
+    //return (replicate(b, a).reduce((acc, x) => acc - x, a).filter((x) => x >= 0)).length;
+    var temp = 0;
+    return replicate(b, a);
 }
 
 // versione ricorsiva
@@ -252,13 +248,9 @@ function recdivt(a, b, quot) {
 }
 
 // Per Tiziano
-function ex_6_I(a, b) {
-    return div(a, b);
+function ex_6_F(a, b) {
+    return solo_operazioni_di_sottrazione_e_somma(a, b);
 }
-function ex_6_R(a, b) {
-    return recdiv(a, b);
-}
-
 /***************************************************************************
 
  Esercizio 7
@@ -276,32 +268,13 @@ pow(2, 3) => 8
 // O(n^2)
 
 function pow(a, b) {
-    var value = 1;
-
-    for (var i=0; i<b; i++) {
-        value = mult(value, a);
-    }
-
-    return value;
-}
-
-// versione ricorsiva
-function recpow(a, b) {
-
-    if (b == 0)
-        return 1;
-
-    return mult(a, recpow(a, b-1));
+    return replicate(a, b).reduce((acc, x) => mult(acc, x), 1);
 }
 
 // Per Tiziano
-function ex_7_I(a, b) {
+function ex_7_F(a, b) {
     return pow(a, b);
 }
-function ex_7_R(a, b) {
-    return recpow(a, b);
-}
-
 /***************************************************************************
 
  Esercizio 8
@@ -316,37 +289,6 @@ oggetti in un array bidimensionale n x n.
 
 var array = [3,5,6,1,2,7,8,9,0]; // 9 elements
 
-// versione iterativa
-
-function matrix(a) {
-    var value = Math.sqrt(a.length);
-    var matrix = [];
-    var index = 0;
-
-    for (var i=0; i<value; i++) {
-        matrix[i] = [];
-        for (var j=0; j<value; j++) {
-            matrix[i][j] = a[index++];
-        }
-    }
-    return matrix; 
-}
-
-// versione ricorsiva
-function recmatrix1(a){
-	if(a.length == 1) 
-		return a[0];
-	return [a[0]].concat(recmatrix1(a.slice(1)));
-}
-
-function recmatrix(a, length) {
-	a[0] = [recmatrix1(a.slice(0,length))];
-	if(a.length <= length) 
-	   return a[0];
-	return [a[0]].concat(recmatrix(a.slice(length), length));
-}
-
-// ---
 function bidimensionaleR(myarray) {
 
     function magic(myarray, matrix) {
@@ -369,12 +311,8 @@ function bidimensionaleR(myarray) {
 
 
 // Per Tiziano
-function ex_8_I(a) {
-    return matrix(a);
-}
-function ex_8_R(a) {
-	var length = Math.sqrt(a.length);
-    return recmatrix(a, length);
+function ex_8_F(a) {
+    return bidimensionaleR(a);
 }
 
 /***************************************************************************
@@ -436,28 +374,14 @@ replicate(3, 4) => A= {3, 3, 3, 3}
 // O(n)
 function replicate(a, n) {
     var array = [];
-
-    for (var i=0; i<n; i++) {
+    for (var i=0; i < n; i++)
         array.push(a);
-    }
-
     return array;
 }
 
-// versione ricorsiva
-function recreplicate(a, n) {
-    if (n == 1)
-        return a;
-    
-    return [a].concat(recreplicate(a, n-1));
-}
-
 // Per Tiziano
-function ex_10_I(a, n) {
+function ex_10_F(a, n) {
     return replicate(a,n);
-}
-function ex_10_R(a, n) {
-    return recreplicate(a, n);
 }
 
 /***************************************************************************
