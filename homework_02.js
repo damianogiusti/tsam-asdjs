@@ -192,40 +192,6 @@ Esempio:
 div(5, 3) => 1 resto 2
 */
 
-function solo_operazioni_di_sottrazione_e_somma(a,b){
-    return [a/b, a%b];
-}
-
-// Per Tiziano
-function ex_6_F(a, b) {
-    return solo_operazioni_di_sottrazione_e_somma(a, b);
-}
-
-// O(n)
-
-function div1(a, b) {
-    var quot = 0;
-    var remainder = 0;
-
-    while ((a-b) >= 0) {
-        a -= b;
-        quot++;
-    }
-
-    remainder = a;
-
-    return [quot, remainder];
-}
-
-function solo_operazioni_di_sottrazione_e_somma(a,b){
-    return [a/b, a%b];
-}
-
-// Per Tiziano
-function ex_6_F(a, b) {
-    return solo_operazioni_di_sottrazione_e_somma(a, b);
-}
-
 function div(a, b) {
 
     // div(5,3)
@@ -298,7 +264,7 @@ function bidimensionaleR(myarray) {
 
     function bidimensionaleRInternal(myarray, n) {
         if (myarray.length == n) {
-            var a = [myarray];
+            return [myarray];
         } else {
             return magic(myarray.slice(0, n),
                          bidimensionaleRInternal(myarray.slice(n), n));
@@ -307,8 +273,6 @@ function bidimensionaleR(myarray) {
 
     return bidimensionaleRInternal(myarray, Math.sqrt(myarray.length));
 }
-
-
 
 // Per Tiziano
 function ex_8_F(a) {
@@ -336,31 +300,21 @@ Output A = {8, 5, 2}
 
 function invert(a) {
     var result = [];
-    for (var i=0; i<a.length; i++) {
-        result.push(a[a.length - i - 1]);
-    }
+    
+    a.forEach(x => {
+        result.unshift(x);
+    });
 
     return result;
 }
-
-// versione ricorsiva
-function recinvert(a) {
-    if (a.length == 1)
-        return a[0];
-    return [a[a.length-1]].concat(recinvert(a.slice(0, a.length-1)));
-}
-
 // Per Tiziano
-function ex_9_I(a) {
+function ex_9_F(a) {
     return invert(a);
-}
-function ex_9_R(a) {
-    return recinvert(a);
 }
 
 /***************************************************************************
 
- Esercizio 10   NON HA SENSO
+ Esercizio 10 
 
 Dati due interi a, n maggiori di 0, scrivere un algoritmo che crea un lista di n elementi
 
