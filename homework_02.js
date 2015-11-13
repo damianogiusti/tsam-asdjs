@@ -30,9 +30,9 @@ function sum2(a) {
 }
 
 /**
-* costruisce un array appoggiandosi alla funzione every,
-* e come test per uscire dall'every utilizza una funzione 
-* che gli passo
+* costruisce un array basato su myarray,
+* e come elementi inserisce quelli di myarray finchè
+* la funzione check è verificata
 */
 function buildUntil(myarray, check) {
     var tmparray = [];
@@ -47,7 +47,7 @@ function buildUntil(myarray, check) {
     return tmparray;
 }
 
-// sum con funzione di appoggio
+// sum con buildUntil
 function sum3(a) {
     return buildUntil(a, x => x > 0).reduce((acc, x) => acc + x, 0);
 }
@@ -195,27 +195,23 @@ div(5, 3) => 1 resto 2
 function div(a, b) {
 
     // div(5,3)
-    // [3,3,3,3,3]
-    //return (replicate(b, a).reduce((acc, x) => acc - x, a).filter((x) => x >= 0)).length;
+    // replicate(a, a) => [5,5,5,5,5]
     var temp = 0;
-    return replicate(b, a);
-}
+    var array = replicate(a, a).map((x) => {
+        var local = x - b - temp;   // local = 5-3-temp
+        temp += b;                  // temp accumula 3
+        return local;               // local diventa un elemento del nuovo array
+    }).filter(x => x >= 0);         // elimino dall'array gli elementi negativi
 
-// versione ricorsiva
-function recdiv(a, b) {
-    return recdivt(a, b, 0);
-}
+    // array.length     => quoziente
+    // array[lung-1]    => resto
 
-function recdivt(a, b, quot) {
-    if ((a - b) < 0) 
-        return [quot, a];
-
-    return recdivt(a-b, b, quot+1);
+    return [array.length, array[array.length -1]];
 }
 
 // Per Tiziano
 function ex_6_F(a, b) {
-    return solo_operazioni_di_sottrazione_e_somma(a, b);
+    return div(a, b);
 }
 /***************************************************************************
 
@@ -230,8 +226,6 @@ Esempio:
 pow(2, 3) => 8
 
 */
-
-// O(n^2)
 
 function pow(a, b) {
     return replicate(a, b).reduce((acc, x) => mult(acc, x), 1);
@@ -250,8 +244,6 @@ Dato un array contenente n^2 elementi, scrivere un algoritmo che permetta di ins
 oggetti in un array bidimensionale n x n.
 
 */
-
-// O(n^2)
 
 var array = [3,5,6,1,2,7,8,9,0]; // 9 elements
 
@@ -293,10 +285,6 @@ Input: A = {2, 5, 8}
 
 Output A = {8, 5, 2}
 */
-
-// O(n)
-
-// var array = [2, 5, 8];
 
 function invert(a) {
     var result = [];
