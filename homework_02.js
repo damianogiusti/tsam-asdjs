@@ -72,7 +72,7 @@ function sum_ingnorantissima(a) {
 
 // Per Tiziano
 function ex_1_F(a) {
-    return sum3(a); 
+    return sum3(a);
 }
 
 /********************************************************************* 
