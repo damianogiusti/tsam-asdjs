@@ -5,34 +5,72 @@ Dato un array di interi, restituire la loro somma fino a che non viene ritrovato
 negativo.
 */
 
-// O(n)
+// sum con la every
+function sum1(a) {
+    var tot = 0;
+    a.every(x => {
+        if (x >= 0)
+            tot += x;
+        return x > 0;
+    });
+
+    return tot;
+}
+
+// sum con every e reduce
+function sum2(a) {
+    var tmparray = [];
+    a.every(x => {
+        if (x >= 0)
+            tmparray.push(x)
+        return x > 0;
+    });
+
+    return tmparray.reduce((acc, x) => acc + x, 0);
+}
+
+/**
+* costruisce un array appoggiandosi alla funzione every,
+* e come test per uscire dall'every
+*/
+function buildUntil(myarray, check) {
+    var tmparray = [];
+    myarray.every(x => {
+        if (check(x)) {
+            tmparray.push(x);
+            return true;
+        } else {
+            return false;
+        }
+    });
+    return tmparray;
+}
+
+// sum con funzione di appoggio
+function sum3(a) {
+    return buildUntil(a, x => x > 0).reduce((acc, x) => acc + x, 0);
+}
+/*
 function sum(a) {
-    var somma = 0;
-    for (var i=0; i < a.length && a[i] > 0; i++) {
-        somma += a[i];
-    }
-    return somma;
+    var trovato = false;
+    var array = a.map(
+        function(x) {
+            if (x < 0) 
+                trovato = true;
+            if (!trovato)
+                return x;
+            return 0;
+        });
+    
+    return array.reduce(
+        function (acc, x) {
+            return acc + x;
+        });
 }
-
-function recsum(a) {
-    // se ho un solo elemento e non è negativo lo ritorno
-    // e finisco la ricorsione
-    if (a.length == 1)
-        return ((a[0] < 0) ? 0 : a[0]);
-
-    // se l'elemento è negativo finisco
-    if (a[0] < 0)
-        return 0;
-
-    return a[0] + recsum(a.slice(1));
-}
-
+*/
 // Per Tiziano
-function ex_1_I(a) {
-    return sum(a);
-}
-function ex_1_R(a) {
-    return recsum(a);
+function ex_1_F(a) {
+    return sum2(a);
 }
 
 /********************************************************************* 
@@ -52,33 +90,9 @@ function sumn(n) {
     return sum;
 }
 
-// versione ricorsiva
-function recsumn(n) {
-    // se il numero è negativo o 0
-    // termino la ricorsione
-    if (n <= 0)
-        return 0;
-
-    // se il numero è pari passo al primo dispari
-    if (n % 2 == 0)
-        return recsumn(n-1);
-    
-    return n + recsumn(n-2);
-}
-
-function recsumn(n) {
-    if (n == 0)
-        return 0;
-    return 2*n-1 + recsumn(n-1);
-}
-
 // Per Tiziano
-function ex_2_I(x) {
+function ex_2_F(x) {
     return sumn(x);
-}
-
-function ex_2_R(x) {
-    return recsumn(x);
 }
 
 /******************************************************************* 
