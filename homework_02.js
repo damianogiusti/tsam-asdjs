@@ -84,12 +84,15 @@ Dato un numero n, restituire la somma dei primi n numeri interi positivi dispari
 
 // O(n)
 function sumn(n) {
-    var sum = 0;
+    return range(n).map(x => 2*x+1).reduce((acc, x) => acc + x);
+}
 
-    for (var i=0; i<n; i++) {
-        sum += 1 + 2*i;
-    }
-    return sum;
+function range(n) {
+    a = [];
+    for (var i=0; i<n; i++)
+        a[i] = i;
+
+    return a;
 }
 
 // Per Tiziano
@@ -107,32 +110,13 @@ Dato un array di 10 elementi, calcolarne la media
 // O(n)
 
 function avg(a) {
-    var sum = 0;
-    for (var i=0; i<a.length; i++)
-        sum += a[i];
-    return sum/a.length;
-}
-
-// versione ricorsiva
-function recavgT(a) {
-    if (a.length == 0)
-        return 0;
-    return a[0] + recavgT(a.slice(1));
-}
-
-function recavg(a) {
-    var lung = a.length;
-    return recavgT(a) / lung;
+    return a.reduce((acc, x) => acc + x/a.length, 0);
 }
 
 // Per Tiziano
-function ex_3_I(a) {
+function ex_3_F(a) {
     return avg(a);
 }
-function ex_3_R(a) {
-    return recavg(a);
-}
-
 /***************************************************************************
 
  Esercizio 4
@@ -332,21 +316,7 @@ oggetti in un array bidimensionale n x n.
 
 var array = [3,5,6,1,2,7,8,9,0]; // 9 elements
 
-function matrix(a) {
-    var value = Math.sqrt(a.length);
-    var matrix = [];
-    var index = 0;
-
-    for (var i=0; i<value; i++) {
-        matrix[i] = [];
-        for (var j=0; j<value; j++) {
-            matrix[i][j] = a[index++];
-        }
-    }
-    return matrix; 
-}
-
-// versione ricorsiva
+// versione iterativa
 
 function matrix(a) {
     var value = Math.sqrt(a.length);
@@ -375,6 +345,28 @@ function recmatrix(a, length) {
 	   return a[0];
 	return [a[0]].concat(recmatrix(a.slice(length), length));
 }
+
+// ---
+function bidimensionaleR(myarray) {
+
+    function magic(myarray, matrix) {
+        matrix.unshift(myarray);
+        return matrix;
+    }  
+
+    function bidimensionaleRInternal(myarray, n) {
+        if (myarray.length == n) {
+            var a = [myarray];
+        } else {
+            return magic(myarray.slice(0, n),
+                         bidimensionaleRInternal(myarray.slice(n), n));
+        }
+    }
+
+    return bidimensionaleRInternal(myarray, Math.sqrt(myarray.length));
+}
+
+
 
 // Per Tiziano
 function ex_8_I(a) {
@@ -430,7 +422,7 @@ function ex_9_R(a) {
 
 /***************************************************************************
 
- Esercizio 10
+ Esercizio 10   NON HA SENSO
 
 Dati due interi a, n maggiori di 0, scrivere un algoritmo che crea un lista di n elementi
 
@@ -484,48 +476,10 @@ Output: A = {5, 1, 2, 8}
 */
 
 function sort(a) {
-    var even = [];
-    var odd = [];
-    for (var i=0; i<a.length; i++) {
-        if (a[i] % 2 == 0) {
-            /*var temp = a[i];
-            a.splice(i, 1);
-            //a.push(temp);
-            array.push(a[i]);*/
-            even.push(a[i]);
-        }
-        else {
-            odd.push(a[i]);
-        }
-    }
-
-    return odd.concat(even);
-}
-
-// versione ricorsiva
-function recsort(a) {
-    var even = [];
-    var odd = [];
-    return recsortt(a, even, odd);
-}
-
-function recsortt(a, even, odd) {
-    if (a.length == 0) {
-        return odd.concat(even);
-    }
-
-    if ((a[0] % 2) == 0) 
-        even.push(a[0]);
-    else
-        odd.push(a[0]);
-
-    return recsortt(a.slice(1), even, odd);
+    return a.filter(x => x%2!=0).concat(a.filter(x => x%2==0));
 }
 
 // Per Tiziano
-function ex_11_I(a) {
+function ex_11_F(a) {
     return sort(a);
-}
-function ex_11_R(a) {
-    return recsort(a);
 }
