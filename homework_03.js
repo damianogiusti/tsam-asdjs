@@ -84,10 +84,10 @@ Input: A = {2, 5, 8}
 Output A = {8, 5, 2}
 */
 
-function invert(a) {
+Array.prototype.invert = function() {
     var result = [];
     
-    a.forEach(x => {
+    this.forEach(x => {
         result.unshift(x);
     });
 
@@ -95,7 +95,7 @@ function invert(a) {
 }
 // Per Tiziano
 function ex_9_F(a) {
-    return invert(a);
+    return a.invert();
 }
 
 
