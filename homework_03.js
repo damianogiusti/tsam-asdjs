@@ -65,7 +65,7 @@ Array.prototype.bidimensionaleR = function () {
 }
 
 // Per Tiziano
-function ex_8_F(a) {
+function ex_8_P(a) {
     return a.bidimensionaleR();
 }
 
@@ -94,7 +94,7 @@ Array.prototype.invert = function() {
     return result;
 }
 // Per Tiziano
-function ex_9_F(a) {
+function ex_9_P(a) {
     return a.invert();
 }
 
@@ -114,11 +114,11 @@ Input: A = {2, 5, 1, 8}
 Output: A = {5, 1, 2, 8}
 */
 
-function sort(a) {
-    return a.filter(x => x%2!=0).concat(a.filter(x => x%2==0));
+Array.prototype.sort = function () {
+    return this.filter(x => x%2!=0).concat(this.filter(x => x%2==0));
 }
 
 // Per Tiziano
-function ex_11_F(a) {
-    return sort(a);
+function ex_11_P(a) {
+    return a.sort();
 }
