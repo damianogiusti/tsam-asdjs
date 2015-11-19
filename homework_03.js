@@ -45,7 +45,7 @@ oggetti in un array bidimensionale n x n.
 
 var array = [3,5,6,1,2,7,8,9,0]; // 9 elements
 
-function bidimensionaleR(myarray) {
+Array.prototype.bidimensionaleR = function () {
 
     function magic(myarray, matrix) {
         matrix.unshift(myarray);
@@ -61,12 +61,12 @@ function bidimensionaleR(myarray) {
         }
     }
 
-    return bidimensionaleRInternal(myarray, Math.sqrt(myarray.length));
+    return bidimensionaleRInternal(this, Math.sqrt(this.length));
 }
 
 // Per Tiziano
 function ex_8_F(a) {
-    return bidimensionaleR(a);
+    return a.bidimensionaleR();
 }
 
 /***************************************************************************
@@ -98,31 +98,6 @@ function ex_9_F(a) {
     return invert(a);
 }
 
-/***************************************************************************
-
- Esercizio 10 
-
-Dati due interi a, n maggiori di 0, scrivere un algoritmo che crea un lista di n elementi
-
-contenenti a.
-
-Esempio:
-
-replicate(3, 4) => A= {3, 3, 3, 3}
-*/
-
-// O(n)
-function replicate(a, n) {
-    var array = [];
-    for (var i=0; i < n; i++)
-        array.push(a);
-    return array;
-}
-
-// Per Tiziano
-function ex_10_F(a, n) {
-    return replicate(a,n);
-}
 
 /***************************************************************************
  
