@@ -72,7 +72,7 @@ function dec2bin(num) {
 	return result;
 }
 
-function dec2bin(num) {
+function dec2bin_2(num) {
 	
 	function dec2bin_rec(stack, n) {
 		if (n == 0)
