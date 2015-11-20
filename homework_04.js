@@ -23,6 +23,12 @@ Stack.prototype.isEmpty = function(){
 	return this.array.length == 0;
 };
 
+Stack.prototype.popAll = function(foo){
+	while(!this.isEmpty()) {
+		foo(this.pop());
+	}
+}
+
 // programma
 /*
 Stack.prototype.dec2bin = function(num){
@@ -55,10 +61,12 @@ function dec2bin(num) {
 		num = Math.floor(num/2);
 	}
 
-	var result = '';
+	/*var result = '';
 	while (!stack.isEmpty()) {
 		result += stack.pop();
-	}
+	}*/
 
-	return result;
+	return stack.popAll(function(x) {
+							
+						});
 }
