@@ -95,7 +95,7 @@ Array.prototype.invert = function() {
 }
 // Per Tiziano
 Array.prototype.ex_9 = function() {
-    this.invert();
+    return this.invert();
 }
 
 
@@ -120,5 +120,5 @@ Array.prototype.sort = function () {
 
 // Per Tiziano
 Array.prototype.ex_11 = function() {
-    this.sort();
+    return this.sort();
 }
