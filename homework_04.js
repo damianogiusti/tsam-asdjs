@@ -71,3 +71,19 @@ function dec2bin(num) {
 	stack.popAll(function(x) { result += x.toString(); });
 	return result;
 }
+
+function dec2bin(num) {
+	
+	function dec2bin_rec(stack, n) {
+		if (n == 0)
+			return stack;
+		else {
+			stack.push(Math.floor(n % 2));
+			return dec2bin_rec(stack, Math.floor(n / 2));
+		}
+	}
+
+	var result = '';
+	bin2dec_rec(new Stack(), num).popAll(function(e) { result += e.toString(); });
+	return result;
+}
