@@ -66,7 +66,8 @@ function dec2bin(num) {
 		result += stack.pop();
 	}*/
 
-	return stack.popAll(function(x) {
-							
-						});
+	var result = '';
+
+	stack.popAll(function(x) { result += x.toString(); });
+	return result;
 }
