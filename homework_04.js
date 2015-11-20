@@ -1,0 +1,64 @@
+// STACK OBJECT
+
+function Stack () {
+	this.array = [];
+	
+}
+
+Stack.prototype.push = function(e){
+	this.array[this.array.length] = e;
+};
+
+Stack.prototype.pop = function(){
+	var temp = this.array[this.array.length - 1];
+	this.array.splice(this.array.length - 1, 1);
+	return temp;
+};
+
+Stack.prototype.peek = function(){
+	return this.array[this.array.length - 1];
+};
+
+Stack.prototype.isEmpty = function(){
+	return this.array.length == 0;
+};
+
+// programma
+/*
+Stack.prototype.dec2bin = function(num){
+	
+	if (num == 0)
+		return '0';
+
+	while (num > 0) {
+		this.push(Math.floor(num % 2));
+		num = Math.floor(num/2);
+	}
+
+	var result = '';
+	while (!this.isEmpty()) {
+		result += this.pop();
+	}
+
+	return result;
+};*/
+
+function dec2bin(num) {
+
+	var stack = new Stack();
+
+	if (num == 0)
+		return '0';
+
+	while (num > 0) {
+		stack.push(Math.floor(num % 2));
+		num = Math.floor(num/2);
+	}
+
+	var result = '';
+	while (!stack.isEmpty()) {
+		result += stack.pop();
+	}
+
+	return result;
+}

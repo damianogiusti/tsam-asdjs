@@ -29,8 +29,8 @@ Array.prototype.sum3 = function () {
 }
 
 // Per Tiziano
-function ex_1_P(a) {
-    return a.sum3();
+Array.prototype.ex_1 = function() {
+    return this.sum3();
 }
 
 /***************************************************************************
@@ -65,8 +65,8 @@ Array.prototype.bidimensionaleR = function () {
 }
 
 // Per Tiziano
-function ex_8_P(a) {
-    return a.bidimensionaleR();
+Array.prototype.ex_8 = function() {
+    return this.bidimensionaleR();
 }
 
 /***************************************************************************
@@ -94,8 +94,8 @@ Array.prototype.invert = function() {
     return result;
 }
 // Per Tiziano
-function ex_9_P(a) {
-    return a.invert();
+Array.prototype.ex_9 = function() {
+    this.invert();
 }
 
 
@@ -119,6 +119,6 @@ Array.prototype.sort = function () {
 }
 
 // Per Tiziano
-function ex_11_P(a) {
-    return a.sort();
+Array.prototype.ex_11 = function() {
+    this.sort();
 }
