@@ -12,8 +12,10 @@ function CircularQueue(n) {
 }
 
 CircularQueue.prototype.enqueue = function(val) {
-	this.array[this.bottom] = val;
-	this.bottom = (this.bottom + 1) % this.length;
+	if (this.size() != this.length) {
+		this.array[this.bottom] = val;
+		this.bottom = (this.bottom + 1) % this.length;
+	}
 };
 
 CircularQueue.prototype.dequeue = function() {
