@@ -19,10 +19,12 @@ CircularQueue.prototype.enqueue = function(val) {
 };
 
 CircularQueue.prototype.dequeue = function() {
-	var temp = this.array[this.top];
-	this.array[this.top] = undefined;
-	this.top = (this.top + 1) % this.length;
-	return temp;
+	if (!this.isEmpty()) {
+		var temp = this.array[this.top];
+		this.array[this.top] = undefined;
+		this.top = (this.top + 1) % this.length;
+		return temp;
+	}
 };
 
 CircularQueue.prototype.front = function() {
