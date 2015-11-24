@@ -43,7 +43,7 @@ PriorityQueue.prototype.enqueue = function(item) {
 			if (item.getPriority() < this.array[i].getPriority()) {
 				this.array.splice(i, 0, item);
 				inserted = true;
-				console.log('inserted ' + item.toString() + ' at index ' + i);
+				// console.log('inserted ' + item.toString() + ' at index ' + i);
 			}
 			i++;
 		}
@@ -71,10 +71,6 @@ PriorityQueue.prototype.size = function() {
 	return this.array.length;
 };
 
-PriorityQueue.prototype.getArray = function() {
-	return this.array;
-};
-
 
 /*
 *	PriorityQueueC
@@ -97,7 +93,7 @@ PriorityQueueC.prototype.enqueue = function(item) {
 			if (this.check(item.getPriority(), this.array[i].getPriority())) {
 				this.array.splice(i, 0, item);
 				inserted = true;
-				console.log('inserted ' + item.toString() + ' at index ' + i);
+				// console.log('inserted ' + item.toString() + ' at index ' + i);
 			}
 			i++;
 		}
@@ -123,8 +119,4 @@ PriorityQueueC.prototype.isEmpty = function() {
 
 PriorityQueueC.prototype.size = function() {
 	return this.array.length;
-};
-
-PriorityQueueC.prototype.getArray = function() {
-	return this.array;
 };
