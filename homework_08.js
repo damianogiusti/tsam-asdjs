@@ -18,5 +18,14 @@ function merge(a1, a2) {
 }
 
 function mergesort(array) {
-	return;
+	
+	if (array.length == 1)
+		return array;
+
+	var half = Math.floor(array.length / 2);
+
+	return merge(	mergesort(array.slice(0, half)),
+					mergesort(array.slice(half))	
+				);
+
 }
