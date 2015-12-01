@@ -206,7 +206,7 @@ BST.prototype.exist = function(e) {
 };
 
 BST.prototype.inOrder = function(node, callback) {
-	if (node != null) {
+	if (node != null) {   
 		this.inOrder(node.left, callback);
 		callback(node.item);
 		this.inOrder(node.right, callback);
