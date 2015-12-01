@@ -41,9 +41,9 @@ function stackOperations(array) {
 
 	array.forEach(function(x) {
 		if (x%2 == 0)
-			stackEven.pop(x);
+			stackEven.push(x);
 		else
-			stackOdd.pop(x);
+			stackOdd.push(x);
 	});
 
 	var stackResult = new Stack();
