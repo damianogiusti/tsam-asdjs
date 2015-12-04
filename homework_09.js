@@ -46,6 +46,7 @@ function stackOperations(array) {
 			stackOdd.push(x);
 	});
 
+
 	var stackResult = new Stack();
 	while (!stackEven.isEmpty() && !stackOdd.isEmpty()) 
 		stackResult.push(stackEven.pop() * stackOdd.pop());
@@ -97,6 +98,8 @@ function ListItem (i, p, n) {
 
 function LinkedList () {
 	this.index = null;
+	this.first = null;
+	this.last = null;
 	this.length = 0;
 }
 
